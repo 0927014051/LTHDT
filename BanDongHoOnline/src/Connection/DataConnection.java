@@ -15,17 +15,16 @@ import java.util.logging.Logger;
  */
 public class DataConnection {
 
-    public static Connection connection;
+    public  static Connection connection;
     public static Statement statement;
 
-    public static ResultSet retrieveData(String sqlCommand) {
+   public static ResultSet retrieveData(String sqlCommand) {
         try {
             createStatement();
             ResultSet resultSet = statement.executeQuery(sqlCommand);
             return resultSet;
         } catch (SQLException ex) {
-            Logger.getLogger(DataConnection.class.getName()).log(Level.SEVERE,
-                    null, ex);
+            Logger.getLogger(DataConnection.class.getName()).log(Level.SEVERE,null, ex);
             return null;
         }
     }

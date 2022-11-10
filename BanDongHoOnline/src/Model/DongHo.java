@@ -14,18 +14,18 @@ import java.math.BigDecimal;
 public class DongHo {
   
     private String MaDH, TenDH,TrangThai,MaLoai,MaHang;
-    private byte[] HinhAnh;
+   // private byte[] HinhAnh;
     private BigDecimal Gia;
     private int SLTon; 
 
-    public DongHo(String MaDH, String TenDH,byte[] HinhAnh, String TrangThai,String MaLoai,String MaHang, BigDecimal Gia, int SLTon) {
+    public DongHo(String MaDH, String TenDH, String TrangThai,String MaLoai,String MaHang, BigDecimal Gia, int SLTon) {
         this.MaDH = MaDH;
         this.TenDH = TenDH;
         this.Gia = Gia;
-        this.HinhAnh = HinhAnh;
         this.TrangThai = TrangThai;
         this.MaLoai = MaLoai;
         this.MaHang = MaHang;
+        this.SLTon = SLTon;
     }
     public String getMaLoai(){
         return MaLoai;
@@ -47,9 +47,9 @@ public class DongHo {
         return TenDH;
     }
 
-    public byte[] getHinhAnh() {
-        return HinhAnh;
-    }
+//    public byte[] getHinhAnh() {
+//        return HinhAnh;
+//    }
 
     public String getTrangThai() {
         return TrangThai;
@@ -71,9 +71,9 @@ public class DongHo {
         this.TenDH = TenDH;
     }
 
-    public void setHinhAnh(byte[] HinhAnh) {
-        this.HinhAnh = HinhAnh;
-    }
+//    public void setHinhAnh(byte[] HinhAnh) {
+//        this.HinhAnh = HinhAnh;
+//    }
 
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;

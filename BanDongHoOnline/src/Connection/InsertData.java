@@ -22,10 +22,9 @@ public class InsertData {
             PreparedStatement ps = DataConnection.connection.prepareStatement(sqlCommand);
             ps.setString(1, taiKhoan.getTenDangNhap());
             ps.setString(2, taiKhoan.getMatKhau());
-            ps.setString(3, taiKhoan.getMaNV());
-            ps.setString(4, taiKhoan.getLoaiTaiKhoan());
+            ps.setString(3, taiKhoan.getLoaiTaiKhoan());
             ps.executeUpdate();
-
+               
             System.out.println("thanh cong");
         } catch (SQLException ex) {
             Logger.getLogger(InsertData.class.getName()).log(Level.SEVERE, null, ex);
@@ -33,20 +32,18 @@ public class InsertData {
 
     }
      public static boolean insertNhanVien(NhanVien nv) {
-        String sqlCommand = "insert into dbo.NhanVien values(?,?,?,?)";
+        String sqlCommand = "insert into dbo.NhanVien values(?,?,?,?,?,?,?,?)";
         try {
             DataConnection.createStatement();
             PreparedStatement ps = DataConnection.connection.prepareStatement(sqlCommand);
             ps.setString(1, nv.getMaNV());
-            ps.setString(2, nv.getHoNV());
-            ps.setString(3, nv.getTenNV());
-            ps.setString(4, nv.getTenDangNhap());
+            ps.setString(3, nv.getHoNV());
+            ps.setString(4, nv.getTenNV());
+            ps.setString(2, nv.getTenDangNhap());
             ps.setString(5, nv.getGtNV());
-            ps.setDate(6, (Date) nv.getNsNV());
+            ps.setDate(6, new Date ( nv.getNsNV().getTime()));
             ps.setString(7, nv.getDcNV());
-            ps.setString(8, nv.getEmailNV());
-            ps.setString(9, nv.getStdNV());
-            ps.setBigDecimal(10,nv.getLuong());
+            ps.setString(8, nv.getStdNV());
 
             if (ps.executeUpdate() > 0) {
                 System.out.println("thêm nhân viên thành công");
@@ -61,7 +58,7 @@ public class InsertData {
     }
      
     public static boolean insertKhachHang(KhachHang kh){
-        String sqlCommand = "insert into dbo.KhachHang values(?,?,?,?,?)";
+        String sqlCommand = "insert into dbo.KhachHang values(?,?,?,?,?,?,?,?,?,?)";
         try{
             DataConnection.createStatement();
             PreparedStatement ps = DataConnection.connection.prepareStatement(sqlCommand);
@@ -70,7 +67,7 @@ public class InsertData {
             ps.setString(4, kh.getHoKH());
             ps.setString(5,kh.getTenKH());
             ps.setString(6, kh.getGtKH());
-            ps.setDate(7, (Date)kh.getNsKH());
+            ps.setDate(7, new Date(kh.getNsKH().getTime()));
             ps.setString(8, kh.getDcKH());
             ps.setString(10, kh.getEmailKH());
             ps.setString(9, kh.getStdKH());
@@ -88,7 +85,7 @@ public class InsertData {
         return false;
     }
     public static boolean insertDongHo(DongHo dh) {
-        String sqlCommand = "insert into dbo.DongHo values(?,?,?)";
+        String sqlCommand = "insert into dbo.DongHo values(?,?,?,?,?,?,?)";
         try {
             DataConnection.createStatement();
             PreparedStatement ps = DataConnection.connection.prepareStatement(sqlCommand);
@@ -99,7 +96,7 @@ public class InsertData {
             ps.setString(2, dh.getMaHang());
             ps.setString(3, dh.getMaLoai());
            ps.setString(7, dh.getTrangThai());
-            ps.setBytes(8, dh.getHinhAnh()); 
+            //ps.setBytes(8, dh.getHinhAnh()); 
             
             
 

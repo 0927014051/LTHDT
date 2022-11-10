@@ -12,30 +12,21 @@ import java.util.Date;
  * @author Admin
  */
 public class NhanVien {
-    private String MaNV, HoNV, TenNV, gtNV, dcNV, stdNV, emailNV,TenDangNhap;  
+    private String MaNV, HoNV, TenNV, gtNV, dcNV, stdNV,TenDangNhap;  
     private Date nsNV;
-    private BigDecimal Luong;
 
-    public NhanVien(String MaNV, String HoNV, String TenNV, String gtNV, Date nsNV, String dcNV, String stdNV,String emailNV, String TenDangNhap, BigDecimal Luong ) {
+    public NhanVien(String MaNV, String HoNV, String TenNV, String gtNV, Date nsNV, String dcNV, String stdNV, String TenDangNhap ) {
             this.MaNV = MaNV;
             this.HoNV = HoNV;
             this.TenNV = TenNV;
             this.dcNV = dcNV;
-            this.emailNV = emailNV;
             this.gtNV = gtNV;
             this.stdNV = stdNV;
             this.nsNV = nsNV;
             this.TenDangNhap = TenDangNhap;
-            this.Luong = Luong;
            
     }
-    public BigDecimal getLuong() {
-        return Luong;
-    }
-
-    public void setLuong(BigDecimal Luong) {
-        this.Luong = Luong;
-    }
+ 
     public String getMaNV() {
         return MaNV;
     }
@@ -64,9 +55,7 @@ public class NhanVien {
         return stdNV;
     }
 
-    public String getEmailNV() {
-        return emailNV;
-    }
+   
     public String getTenDangNhap(){
         return TenDangNhap;
     }
@@ -98,9 +87,7 @@ public class NhanVien {
         this.stdNV = stdNV;
     }
 
-    public void setEmailNV(String emailNV) {
-        this.emailNV = emailNV;
-    }
+  
     public void setTenDangNhap(String TenDangNhap){
         this.TenDangNhap = TenDangNhap;
     }

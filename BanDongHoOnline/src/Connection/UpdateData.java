@@ -13,21 +13,39 @@ import model.*;
  * @author conghau
  */
 public class UpdateData {
+    public static boolean upadateTaiKhoan(TaiKhoan tk){
+        String sqlCommnad = "update into dbo.TaiKhoan values(?,?,?)";
+        try {
+         DataConnection.createStatement();
+         PreparedStatement ps = DataConnection.connection.prepareStatement(sqlCommnad);
+         ps.setString(1,tk.getTenDangNhap());
+         ps.setString(2, tk.getMatKhau());
+         ps.setString(3, tk.getLoaiTaiKhoan());
+         if (ps.executeUpdate() > 0) {
+                System.out.println("sửa tài khoản thành công");
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("sửa sửa thất bại");
+        return false;
+        }
+                
      public static boolean updateNhanVien(NhanVien nv) {
-        String sqlCommand = "update into dbo.NhanVien values(?,?,?,?)";
+        String sqlCommand = "update into dbo.NhanVien values(?,?,?,?,?,?,?,?)";
         try {
             DataConnection.createStatement();
             PreparedStatement ps = DataConnection.connection.prepareStatement(sqlCommand);
             ps.setString(1, nv.getMaNV());
-            ps.setString(2, nv.getHoNV());
-            ps.setString(3, nv.getTenNV());
-            ps.setString(4, nv.getTenDangNhap());
+            ps.setString(3, nv.getHoNV());
+            ps.setString(4, nv.getTenNV());
+            ps.setString(2  , nv.getTenDangNhap());
             ps.setString(5, nv.getGtNV());
             ps.setDate(6, (Date) nv.getNsNV());
             ps.setString(7, nv.getDcNV());
-            ps.setString(8, nv.getEmailNV());
-            ps.setString(9, nv.getStdNV());
-            ps.setBigDecimal(10,nv.getLuong());
+            ps.setString(8, nv.getStdNV());
 
             if (ps.executeUpdate() > 0) {
                 System.out.println("sửa nhân viên thành công");
@@ -69,16 +87,18 @@ public class UpdateData {
         return false;
     }
     public static boolean updateDongHo(DongHo dh) {
-        String sqlCommand = "update into dbo.DongHo values(?,?,?)";
+        String sqlCommand = "update into dbo.DongHo values(?,?,?,?,?,?,?)";
         try {
             DataConnection.createStatement();
             PreparedStatement ps = DataConnection.connection.prepareStatement(sqlCommand);
             ps.setString(1, dh.getMaDH());
-            ps.setString(2, dh.getTenDH());
-            ps.setInt(3, dh.getSLTon());
-            ps.setBigDecimal(4, dh.getGia());
-            ps.setString(5, dh.getTrangThai());
-            ps.setBytes(6, dh.getHinhAnh()); 
+            ps.setString(2, dh.getMaHang());
+            ps.setString(3, dh.getMaLoai());
+            ps.setString(5, dh.getTenDH());
+            ps.setInt(6, dh.getSLTon());
+            ps.setBigDecimal(5, dh.getGia());
+            ps.setString(7, dh.getTrangThai());
+           // ps.setBytes(6, dh.getHinhAnh()); 
             
 
             if (ps.executeUpdate() > 0) {

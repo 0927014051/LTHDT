@@ -34,8 +34,7 @@ public class LoadData {
                 TaiKhoan taiKhoan = new TaiKhoan(
                         rs.getString(1).trim(),
                         rs.getString(2).trim(),
-                        rs.getString(3).trim(),
-                        rs.getString(4).trim());
+                        rs.getString(3).trim());
                 
                         
                controller.arrayListTaiKhoan.add(taiKhoan);
@@ -56,9 +55,7 @@ public class LoadData {
                         rs.getDate(6),
                         rs.getString(7).trim(),
                         rs.getString(8).trim(),
-                        rs.getString(9).trim(),
-                        rs.getString(2).trim(),
-                        rs.getBigDecimal(10));
+                        rs.getString(2).trim());
                        
                 controller.arrayListNhanVien.add(nv);
             }
@@ -66,23 +63,7 @@ public class LoadData {
             Logger.getLogger(LoadData.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
-//    public static void loadTableChucVu() {
-//      
-//        ResultSet rs = DataConnection.retrieveData("select * from dbo.TaiKhoan");
-//        try {
-//            while (rs.next()) {
-//                ChucVu cv = new ChucVu(
-//                        rs.getString(1).trim(),
-//                        rs.getString(2).trim(),
-//                        rs.getString(3).trim());
-//                
-//                        
-//               controller.arrayListChucVu.add(cv);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(LoadData.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+
     public static void loadTableKhachHang() {
         ResultSet rs = DataConnection.retrieveData("select * from dbo.KhachHang");
         try {
@@ -233,7 +214,7 @@ public class LoadData {
                 DongHo dh = new DongHo(
                         rs.getString(1).trim(),
                         rs.getString(4).trim(),
-                        rs.getBytes(8),
+                        //rs.getBytes(8),
                         rs.getString(7).trim(),
                         rs.getString(3).trim(),
                         rs.getString(2).trim(),

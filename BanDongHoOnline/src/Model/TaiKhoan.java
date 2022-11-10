@@ -11,7 +11,6 @@ package model;
 public class TaiKhoan {
     private String TenDangNhap;
     private String MatKhau;
-    private String maNV;
     private String LoaiTaiKhoan;
     public String getLoaiTaiKhoan() {
         return LoaiTaiKhoan;
@@ -39,18 +38,13 @@ public class TaiKhoan {
         this.MatKhau = MatKhau;
     }
 
-    public String getMaNV() {
-        return maNV;
-    }
 
-    public void setMaNV(String maNV) {
-        this.maNV = maNV;
-    }
 
-    public TaiKhoan(String TenDangNhap, String MatKhau, String maNV,String LoaiTaiKhoan) {
+
+
+    public TaiKhoan(String TenDangNhap, String MatKhau,String LoaiTaiKhoan) {
         this.TenDangNhap = TenDangNhap;
         this.MatKhau = MatKhau;
-        this.maNV = maNV;
         this.LoaiTaiKhoan = LoaiTaiKhoan;
     }
     public TaiKhoan(){

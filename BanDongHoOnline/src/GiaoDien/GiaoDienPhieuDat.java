@@ -4,11 +4,14 @@
  */
 package GiaoDien;
 
+import Connection.DataConnection;
+import static Connection.DataConnection.connection;
 import Connection.LoadData;
 import javax.swing.table.DefaultTableModel;
 import model.CT_PhieuDat;
 import model.PhieuDat;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
  * @author Admin
@@ -18,25 +21,69 @@ public class GiaoDienPhieuDat extends javax.swing.JFrame {
     /**
      * Creates new form GiaoDienPhieuDat
      */
-    private DefaultTableModel myTable ;
+     private DefaultTableModel myTable ;
+      private DefaultTableModel mytable1 ;
     public GiaoDienPhieuDat() {
         initComponents();
-    myTable  = (DefaultTableModel) jTable1.getModel();
-        showData();
-        jTable1.setDefaultEditor(Object.class, null);;
-        //jTable1.setSelectionBackground(Color.RED);
-        jTable1.setSelectionMode(0);
+   
+
+//    mytable1    = (DefaultTableModel) jTable1.getModel();
+//    myTable  = (DefaultTableModel) tablePhieuDat.getModel();
+//        showData();
+//        tablePhieuDat.setDefaultEditor(Object.class, null);;
+//        //jTable1.setSelectionBackground(Color.RED);
+//        tablePhieuDat.setSelectionMode(0);
+//        jTable1.setDefaultEditor(Object.class, null);
+//        jTable1.setSelectionMode(0);
     }
     private void showData(){
         new LoadData();
         myTable .setRowCount(0);
-        for (PhieuDat pd : Controller.controller.arrayListPhieuDat ) {
-                
-                 myTable .addRow(new Object[]{pd.getMaPD(),pd.getMaKH(),pd.getHoKH(),pd.getTenKH(),pd.getDcKH(),pd.getSdtKH(),pd.getNgayDat(),pd.getNgayGiao()});
+        int dem = 0;
+        
+        for (PhieuDat pd: Controller.controller.arrayListPhieuDat) {
+            dem++;
+           myTable .addRow(new Object[]{dem,pd.getMaPD(),pd.getMaKH(),pd.getHoKH(),pd.getTenKH(),pd.getDcKH(),pd.getSdtKH(),pd.getNgayDat(),pd.getNgayGiao()});
+           
     }
-
+           mytable1.setRowCount(0);
+           for(CT_PhieuDat ctpd : Controller.controller.arrayListCT_PhieuDat){
+               mytable1.addRow(new Object[]{ctpd.getMaPD(),ctpd.getMaDH(),ctpd.getSoLuong(),ctpd.getGia()});
+           }
 }
-
+//     public void LayDuLieuSanPham() {
+//        String cautruyvan = " ";
+//        System.out.println("vào được đây rồi");
+//        cautruyvan = " select PhieuDat.MaPhieuDat,MaKH,HoKH,TenKH,DCKH,SDT,NgayDat,NgayGiao, MaDH,SUM(SLDat),Gia from PhieuDat,CT_PhieuDat where PhieuDat.MaPhieuDat = CT_PhieuDat.MaPhieuDat and SLDat > 0 group by SLDat ";
+//        ResultSet rs = DataConnection.retrieveData(cautruyvan);
+//        Object[] obj = new Object[]{"STT","Mã phiếu đặt","Mã khách hàng","Họ","Tên","Địa chỉ","SDT","Ngày đặt","Ngày giao","Mã đồng hồ","số lượg","Giá"};
+//        DefaultTableModel tableModel = new DefaultTableModel(obj, 0);
+//        tablePhieuDat.setModel(tableModel);
+//        int c = 0;
+//        try {
+//            while (rs.next()) {
+//                c++;
+//                Object[] item = new Object[14];
+//                item[0] = c;
+//                item[1] = rs.getString("MaPhieuDat");
+//                item[2] = rs.getString("MaKH");
+//                item[3] = rs.getString("HoKH");
+//                item[4] = rs.getString("TenKH");
+//                item[5] = rs.getString("DCKH");
+//                item[6] = rs.getString("SDT");
+//                item[7] = rs.getDate("NgayDat");
+//                item[8] = rs.getDate("NgayGiao");
+//                item[9] = rs.getString("MaDH");
+//                item[10] = rs.getInt("SLDat");
+//                item[11] = rs.getBigDecimal("Gia");
+//                tableModel.addRow(item);
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(ex.toString());
+//        }
+//    }
+    
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,57 +93,105 @@ public class GiaoDienPhieuDat extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCT_PhieuDat = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblPhieuDat = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Phiếu Đặt");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("PHIẾU ĐẶT");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCT_PhieuDat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Mã phiếu đặt", "Mã khách hàng", "Họ ", "Tên", "Địa chỉ", "SDT", "Ngày đặt", "Ngày giao"
+                "STT", "Mã phiếu đặt ", "Mã đồng hồ", "Số lượng", "Đơn giá", "Thành Tiền"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Short.class, java.lang.Double.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tblCT_PhieuDat.setToolTipText("");
+        jScrollPane1.setViewportView(tblCT_PhieuDat);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("CHI TIẾT PHIẾU ĐẶT");
+
+        tblPhieuDat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "STT", "Mã phiếu đặt ", "Họ KH", "Tên KH", "Địa chỉ KH", "Ngày giao"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblPhieuDat);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(561, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addGap(80, 80, 80)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
 
         pack();
@@ -138,8 +233,11 @@ public class GiaoDienPhieuDat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tblCT_PhieuDat;
+    private javax.swing.JTable tblPhieuDat;
     // End of variables declaration//GEN-END:variables
 }
